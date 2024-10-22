@@ -56,3 +56,22 @@ Can also do it with a single method.
 
 Dictionary won't work since consecutive characters need to be counted separately.
 Better to convert to list to use the append method.
+
+### Problem 7: Rotate Matrix
+
+Given an NxN matrix, rotate it by 90deg. 
+Need to transpose the matrix and then rotate it.
+
+### Problem 8: Zero matrix
+
+There's an easy solution with O(m+n) space & time complexity.
+
+Remember you can use the first row as a holder for the O(1) space complexity solution.
+
+Instead of using additional arrays - use the first row and column to store information about which rows and columns should be zeroed out.
+
+May need to verify that the given matrix is rectangular.
+
+### Problem 9: String rotation
+
+Remember that adding a string with itself will ensure it contains all of its substrings.
