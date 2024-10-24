@@ -20,6 +20,6 @@ class LinkedList:
     def print_list(self):
         current = self.head
         while current:
-            print(current.head + "->")
+            print(current.data + "->")
             current = current.next
         print("None")
