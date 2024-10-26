@@ -49,3 +49,9 @@ Hard:
 1. Reverse Nodes in k-Group
 2. Copy List with Random Pointer
 3. Merge k Sorted Lists
+
+---
+
+### Problem 3 - Delete middle node
+
+
