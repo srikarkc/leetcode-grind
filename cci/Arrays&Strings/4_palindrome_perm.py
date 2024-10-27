@@ -26,3 +26,26 @@ def has_plaindrom_per(given_word):
 
 print(has_plaindrom_per("race car"))
 print(has_plaindrom_per('rock'))
+
+def has_palindrome_perm(given_word):
+    bit_vector = 0
+
+    given_word = given_word.replace(" ", "").lower()
+
+    def toggle_bit(bit_vector, index):
+        mask = 1 << index
+
+        if (bit_vector & (1 << index)) != 0:
+            bit_vector &= ~mask
+        else:
+            bit_vector |= mask
+    
+        return bit_vector
+    
+    for char in given_word:
+        index = ord(char) - ord('a')
+
+        if 0 <= index < 26:
+            bit_vector = toggle_bit(bit_vector, index)
+
+    return bit_vector == 0 or (bit_vector & (bit_vector - 1) == 0)
