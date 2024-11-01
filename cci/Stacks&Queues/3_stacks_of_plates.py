@@ -4,7 +4,7 @@ class SetOfStacks:
         self.capacity = capacity
 
     def push(self, value):
-        if not self.stacks or len(self.stacks[-1] == self.capacity):
+        if not self.stacks or len(self.stacks[-1]) == self.capacity:
             self.stacks.append([])
         self.stacks[-1].append(value)
 
