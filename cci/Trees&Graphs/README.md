@@ -144,3 +144,165 @@ bfs(graph, 'A')  # Output: A B C D E F
 - **Trees** are specialized types of graphs with hierarchical structures and no cycles. They’re used in scenarios needing ordered, searchable, or hierarchical data.
 - **Graphs** are versatile, representing a wide range of relationships with or without direction, weights, or cycles. They’re suited for more complex and interconnected data structures.
 
+---
+
+1. Basic Node Structure for trees
+
+```python
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+```
+
+2. Pre-order, in-order, & post-order traversals
+
+```python
+
+def inOrder(root):
+    if root:
+        inOrder(root.left)
+        print(root.value, end=" ")
+        inOrder(root.right)
+
+def preOrder(root):
+    if root:
+        print(root.value, end=" ")
+        preOrder(root.left)
+        preOrder(root.right)
+
+def postOrder(root):
+    if root:
+        postOrder(root.left)
+        postOrder(root.right)
+        print(root.value, end=" ")
+
+```
+
+3. Breadth-first search (aka level-order Traversal)
+
+```python
+from collections import deque
+
+def levelOrder(root):
+    if not root:
+        return
+
+    queue = deque([root])
+
+    while queue:
+        node = queue.popleft()
+        print(node.value, end=" ")
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+
+```
+
+We're using deque for it's efficient popleft() & append() methods.
+
+#### Binary search tree operations:
+
+- Insert a node
+
+```python
+def insert(root, value):
+    if not root:
+        TreeNode(value)
+    if value < root.value:
+        root.left = insert(root.left, value)
+    else:
+        root.right = insert(root.right, value)
+```
+
+The above code is recursive and allows for duplicate values (because of else).
+
+- Search for a node
+
+```python
+def search(root, value);
+    if not root or root.value == value:
+        return root
+    if value < root.value:
+        return search(root.left, value)
+    return search(root.right, value)
+```
+
+- Delete a node
+
+```python
+def delete_node(root, value);
+    if not root:
+        return root
+    if value < root.value:
+        root.left = delete_node(root.left, value)
+    elif value > root.value:
+        root.right = delete_node(root.right, value)
+    else:
+        if not root.left:
+            return root.right
+        elif not root.right:
+            return root.left
+        temp = find_min(root.right)
+        root.value = temp.value
+        root.right = delete_node(root.right, temp.value)
+    return root
+
+def find_min(node):
+    while node.left:
+        node = node.left
+    return node
+```
+
+#### Graphs
+
+Graphs can be represented as adjacency list and adjacency matrix.
+
+```python
+# adjacency list
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+
+# adjacency matrix
+adjacency_matrix = [
+    [0, 1, 1, 0, 0, 0],
+    [1, 0, 0, 1, 1, 0],
+    [1, 0, 0, 0, 0, 1],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 1],
+    [0, 0, 1, 0, 1, 0]
+]
+
+# Depth-first search (DFS)
+def dfs(graph, start, visited=set()):
+    if start not in visited:
+        print(start, end=" ")
+        visited.add(start)
+        for neighbor in graph[start]:
+            dfs(graph, neighbor, visited)
+
+# Bread-first search (BFS)
+from collections import deque
+def bfs(graph, start):
+    visited = set([start])
+    queue = dequeue([start])
+
+    while queue:
+        node = queue.popleft()
+        print(node, end=" ")
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+```
+
+
