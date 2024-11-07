@@ -18,6 +18,6 @@ def create_minimal_bst(arr, start, end):
     node = TreeNode(arr[mid])
 
     node.left = create_minimal_bst(arr, start, mid - 1)
-    node.right = create_minimal_bst(arr, start + 1, end)
+    node.right = create_minimal_bst(arr, mid + 1, end)
 
     return node
